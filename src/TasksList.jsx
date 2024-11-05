@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { PiDotsSixVerticalBold } from "react-icons/pi";
-import Tomovesection from "./components/Tomovesection";
-import AddToCell from "./components/AddToCell";
 
 function TasksList({
   taskId,
