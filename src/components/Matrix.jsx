@@ -5,7 +5,7 @@ function Matrix() {
   return (
     <div className={`mt-4 w-full flex gap-2 flex-wrap justify-center`}>
       <div
-        className={`w-[47%] flex items-center justify-center h-40 bg-[#006a674d] ${styles.parent}`}
+        className={`w-[47%] flex items-center justify-center border border-prim-300 rounded h-40 bg-[#006a674d] ${styles.parent}`}
       >
         <h3 className="uppercase text-sm flex-col items-center justify-center hidden">
           urgert <span className="text-xl text-white -200 font-bold">/</span>{" "}
@@ -13,7 +13,7 @@ function Matrix() {
         </h3>
       </div>
       <div
-        className={`w-[47%] flex items-center justify-center h-40 bg-[#fff4b74d] ${styles.parent}`}
+        className={`w-[47%] flex items-center justify-center border border-prim-200 rounded h-40 bg-[#fff4b74d] ${styles.parent}`}
       >
         <h3 className="uppercase text-sm flex-col items-center justify-center hidden">
           urgert <span className="text-xl text-white -200 font-bold">/</span>{" "}
@@ -21,7 +21,7 @@ function Matrix() {
         </h3>
       </div>
       <div
-        className={`w-[47%] flex items-center justify-center h-40 bg-[#fff4b74d] ${styles.parent}`}
+        className={`w-[47%] flex items-center justify-center border border-prim-200 rounded h-40 bg-[#fff4b74d] ${styles.parent}`}
       >
         <h3 className="uppercase text-sm flex-col items-center justify-center hidden">
           not-urgert{" "}
@@ -29,7 +29,7 @@ function Matrix() {
         </h3>
       </div>
       <div
-        className={`w-[47%] flex items-center justify-center h-40 bg-[#A0153E4d] ${styles.parent}`}
+        className={`w-[47%] flex items-center justify-center border border-prim-100 rounded h-40 bg-[#A0153E4d] ${styles.parent}`}
       >
         <h3 className="uppercase text-sm flex-col items-center justify-center hidden">
           not-urgert{" "}
