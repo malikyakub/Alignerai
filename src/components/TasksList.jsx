@@ -23,7 +23,7 @@ function TasksList({
   let priorityClass;
   if (taskPriority === "high") {
     priorityClass = "bg-prim-300";
-  } else if (taskPriority === "middle") {
+  } else if (taskPriority === "medium") {
     priorityClass = "bg-prim-200";
   } else {
     priorityClass = "bg-prim-100";
@@ -39,13 +39,12 @@ function TasksList({
     } else {
       console.log("not/not");
     }
-  
+
     console.log(taskId);
-  
+
     let currentTask = tasks.find((task) => task.taskId === taskId);
     console.log(currentTask);
   };
-  
 
   return (
     <>

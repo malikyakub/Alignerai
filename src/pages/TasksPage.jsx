@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from "react";
-import Header from "./components/Header";
-import Divider from "./components/Divider";
-import TasksList from "./TasksList";
-import Matrix from "./components/Matrix";
-import AlignerBtn from "./components/AlignerBtn";
+import Header from "../components/Header";
+import Divider from "../components/Divider";
+import TasksList from "../components/TasksList";
+import Matrix from "../components/Matrix";
+import AlignerBtn from "../components/AlignerBtn";
 
 function Tasks() {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    fetch('/task.json')
+    fetch("/data.json")
       .then((res) => res.json())
       .then((data) => setTasks(data.tasks))
-      .catch((error) => console.error('Error fetching tasks:', error));
+      .catch((error) => console.error("Error fetching tasks:", error));
   }, []);
-
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -34,7 +33,7 @@ function Tasks() {
           />
         ))}
       </div>
-      <button className="btn bg-gold-100 text-gold-200 mt-5">Add Task</button>
+      <a href="/add-task" className="btn bg-gold-100 text-gold-200 mt-5">Add Task</a>
       <footer className="fixed bottom-0 w-full h-16 bg-gold-100">
         <AlignerBtn />
       </footer>
