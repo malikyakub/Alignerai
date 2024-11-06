@@ -1,5 +1,30 @@
 {
-    "tasks": [],
+    "tasks": [
+      {
+        "taskId" : "#01",
+        "taskName" : "Exam",
+        "taskDetail" : "Prepare for the next week midterm",
+        "taskDuration" : "4 hours",
+        "taskPriority" : "medium",
+        "taskisSet" : false
+      },
+      {
+        "taskId" : "#02",
+        "taskName" : "Conference",
+        "taskDetail" : "meet the Relia trusty team",
+        "taskDuration" : "20 min",
+        "taskPriority" : "high",
+        "taskisSet" : false
+      },
+      {
+        "taskId" : "#03",
+        "taskName" : "football",
+        "taskDetail" : "have some fun time with some friends",
+        "taskDuration" : "5 hours",
+        "taskPriority" : "low",
+        "taskisSet" : false
+      }
+    ],
     "pri-1-tasks" : [],
     "pri-2-tasks" : [],
     "pri-3-tasks" : [],

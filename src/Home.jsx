@@ -4,7 +4,7 @@ import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div className="flex flex-col h-[100vh] items-center justify-around">
+    <div className="flex flex-col h-[100dvh] items-center justify-around overflow-hidden">
       <Intro />
       <div className="absolute bottom-0 w-full flex justify-center py-4">
         <Footer />
