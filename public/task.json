@@ -1,0 +1,29 @@
+{
+    "tasks": [
+      {
+        "taskId": "#01",
+        "taskName": "dishes",
+        "taskDetail": "doing the dishes",
+        "taskDuration": "1 hour",
+        "taskPriority": "middle",
+        "taskisSet" : false
+      },
+      {
+        "taskId": "#02",
+        "taskName": "exercise",
+        "taskDetail": "12 assigned exercises",
+        "taskDuration": "4 hours",
+        "taskPriority": "high",
+        "taskisSet" : false
+      },
+      {
+        "taskId": "#03",
+        "taskName": "Exam",
+        "taskDetail": "midterm examination",
+        "taskDuration": "20 minutes",
+        "taskPriority": "low",
+        "taskisSet" : false
+      }
+    ]
+  }
+  

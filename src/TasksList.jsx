@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PiDotsSixVerticalBold } from "react-icons/pi";
 
 function TasksList({
@@ -7,11 +7,19 @@ function TasksList({
   taskDetail,
   taskDuration,
   taskPriority,
+  taskisSet,
 }) {
   const [isMainDialogOpen, setIsMainDialogOpen] = useState(false);
   const [isPriorityDialogOpen, setIsPriorityDialogOpen] = useState(false);
+  const [tasks, setTasks] = useState([]);
 
-  // Determine priority color
+  useEffect(() => {
+    fetch("/task.json")
+      .then((res) => res.json())
+      .then((data) => setTasks(data.tasks))
+      .catch((error) => console.error("Error fetching tasks:", error));
+  }, []);
+
   let priorityClass;
   if (taskPriority === "high") {
     priorityClass = "bg-prim-300";
@@ -22,20 +30,25 @@ function TasksList({
   }
 
   const handlePrioritySelection = (section) => {
-    if (section == 1) {
+    if (section === 1) {
       console.log("ur/im");
-    } else if (section == 2) {
+    } else if (section === 2) {
       console.log("ur/notim");
-    } else if (section == 3) {
+    } else if (section === 3) {
       console.log("notur/im");
     } else {
       console.log("not/not");
     }
+  
+    console.log(taskId);
+  
+    let currentTask = tasks.find((task) => task.taskId === taskId);
+    console.log(currentTask);
   };
+  
 
   return (
     <>
-      {/* Task Item */}
       <div
         className="relative flex justify-between items-center rounded bg-[rgba(255,255,255,0.2)] py-4 px-4 m-2 cursor-pointer"
         onClick={() => setIsMainDialogOpen(true)}
@@ -59,7 +72,6 @@ function TasksList({
         </div>
       </div>
 
-      {/* Main Dialog for Task Details */}
       {isMainDialogOpen && (
         <div className="fixed inset-0 bg-dark-100 bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-dark-100 p-6 rounded-md shadow-lg w-96">
@@ -110,7 +122,6 @@ function TasksList({
         </div>
       )}
 
-      {/* Priority Dialog with Options */}
       {isPriorityDialogOpen && (
         <div className="fixed inset-0 bg-dark-100 bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-dark-100 p-6 rounded-md shadow-lg w-4/5">
