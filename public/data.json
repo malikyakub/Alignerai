@@ -23,11 +23,46 @@
         "taskDuration" : "5 hours",
         "taskPriority" : "low",
         "taskisSet" : false
+      },
+      {
+        "taskId" : "#04",
+        "taskName" : "GYM",
+        "taskDetail" : "lift some wight",
+        "taskDuration" : "45 min",
+        "taskPriority" : "medium",
+        "taskisSet" : false
+      },
+      {
+        "taskId" : "#05",
+        "taskName" : "Exercise",
+        "taskDetail" : "do some home exercises",
+        "taskDuration" : "10 min",
+        "taskPriority" : "low",
+        "taskisSet" : false
       }
     ],
-    "pri-1-tasks" : [],
-    "pri-2-tasks" : [],
-    "pri-3-tasks" : [],
-    "pri-4-tasks" : []
+    "priOneTasks" : [
+      {
+        "taskId" : "#03"
+      },
+      {
+        "taskId" : "#01"
+      }
+    ],
+    "priTwoTasks" : [
+      {
+        "taskId" : "#02"
+      }
+    ],
+    "priThreeTasks" : [
+      {
+        "taskId" : "#04"
+      }
+    ],
+    "priFourTasks" : [
+      {
+        "taskId" : "#05"
+      }
+    ]
   }
   
