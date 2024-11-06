@@ -1,6 +1,6 @@
 import React from "react";
 
-function Header() {
+function Intro() {
   return (
     <div className="flex flex-col justify-center items-center">
       <h1 className="uppercase text-xl text-center">Manage you time with...</h1>
@@ -21,4 +21,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default Intro;
