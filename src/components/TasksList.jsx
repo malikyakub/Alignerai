@@ -14,7 +14,7 @@ function TasksList({
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    fetch("/task.json")
+    fetch("/data.json")
       .then((res) => res.json())
       .then((data) => setTasks(data.tasks))
       .catch((error) => console.error("Error fetching tasks:", error));
