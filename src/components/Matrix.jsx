@@ -37,7 +37,7 @@ function Matrix() {
 
   return (
     <div className="mt-4 w-full flex gap-2 flex-wrap justify-center">
-      <div className="w-[47%] flex items-center gap-1 p-2 overflow-scroll flex-wrap justify-center border border-prim-300 rounded h-40 bg-[#006a674d]">
+      <div className="w-[47%] flex items-start gap-1 p-2 overflow-scroll flex-wrap justify-center border border-prim-300 rounded h-40 bg-[#006a674d]">
         {priOneTasks.map((priOneTask) => (
           <div
             onClick={() => taskDetailShow(priOneTask.taskId)}
@@ -48,7 +48,7 @@ function Matrix() {
           </div>
         ))}
       </div>
-      <div className="w-[47%] flex items-center gap-1 p-2 overflow-scroll flex-cols justify-center border border-prim-200 rounded h-40 bg-[#fff4b74d]">
+      <div className="w-[47%] flex items-start gap-1 p-2 overflow-scroll flex-cols justify-center border border-prim-200 rounded h-40 bg-[#fff4b74d]">
         {priTwoTasks.map((priTwoTask) => (
           <div
             onClick={() => taskDetailShow(priTwoTask.taskId)}
@@ -59,7 +59,7 @@ function Matrix() {
           </div>
         ))}
       </div>
-      <div className="w-[47%] flex items-center gap-1 p-2 overflow-scroll flex-wrap justify-center border border-prim-200 rounded h-40 bg-[#fff4b74d]">
+      <div className="w-[47%] flex items-start gap-1 p-2 overflow-scroll flex-wrap justify-center border border-prim-200 rounded h-40 bg-[#fff4b74d]">
         {priThreeTasks.map((priThreeTask) => (
           <div
             onClick={() => taskDetailShow(priThreeTask.taskId)}
@@ -70,7 +70,7 @@ function Matrix() {
           </div>
         ))}
       </div>
-      <div className="w-[47%] flex items-center gap-1 p-2 overflow-scroll flex-wrap justify-center border border-prim-100 rounded h-40 bg-[#A0153E4d]">
+      <div className="w-[47%] flex items-start gap-1 p-2 overflow-scroll flex-wrap justify-center border border-prim-100 rounded h-40 bg-[#A0153E4d]">
         {priFourTasks.map((priFourTask) => (
           <div
             onClick={() => taskDetailShow(priFourTask.taskId)}
