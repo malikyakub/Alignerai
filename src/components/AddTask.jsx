@@ -1,47 +1,95 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import db from "../appwrite/database";
 import AlignerBtn from "./AlignerBtn";
+import Alert from "./alert";
 
 function AddTask({ onSubmit }) {
   const [taskName, setTaskName] = useState("");
   const [taskDetail, setTaskDetail] = useState("");
   const [taskDuration, setTaskDuration] = useState("");
-  const [taskPriority, setTaskPriority] = useState("");
-  const [tasIsSet, setTaskIsSet] = useState(false);
+  const [totalTasks, setTotalTasks] = useState(0);
+  const [tasksName, setTasksNames] = useState([]);
+  const [alert, setAlert] = useState({ msg: "", cat: "" });
+  const [alertIsShown, setAlertIsShown] = useState(false);
 
-  const handleSubmit = (e) => {
+  const fetchTotalTasks = async () => {
+    try {
+      const res = await db.Tasks.list();
+
+      const taskNames = res.documents.map((task) => task.task_name);
+      setTasksNames(taskNames);
+
+      setTotalTasks(res.documents.length);
+
+      console.log(`Task Names: ${taskNames}`);
+      console.log(`Total tasks in the database: ${res.documents.length}`);
+    } catch (error) {
+      console.error("Error fetching tasks:", error);
+    }
+  };
+
+  const formatTaskId = (taskNumber) => {
+    return taskNumber < 10 ? `#0${taskNumber}` : `#${taskNumber}`;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Ensure all necessary fields are filled
-    if (!taskName || !taskDetail || !taskDuration || !taskPriority) {
+    if (!taskName || !taskDetail || !taskDuration) {
       alert("Please fill in all fields");
       return;
     }
 
-    // Collect form data
-    const formData = {
-      taskName,
-      taskDetail,
-      taskDuration,
-      taskPriority,
-      tasIsSet: false, // Indicate that the task is set
+    const newTask = {
+      task_id: formatTaskId(totalTasks + 1),
+      task_name: taskName,
+      task_details: taskDetail,
+      task_duration: taskDuration,
     };
 
-    // Call the onSubmit prop (passing data to the parent)
-    onSubmit(formData);
+    if (tasksName.includes(newTask.task_name)) {
+      setAlertIsShown(true);
+      setAlert({ msg: "Task name already exists", cat: "warning" });
+      return;
+    }
 
-    // Optionally, clear the form fields after submission
-    setTaskName("");
-    setTaskDetail("");
-    setTaskDuration("");
-    setTaskPriority("");
-    window.location.href = "/tasks";
+    if (taskDetail.length > 150 || taskName.length > 20 || taskDuration > 8) {
+      setAlertIsShown(true);
+      setAlert({ msg: "out of limit texts", cat: "error" });
+      return;
+    }
+
+    try {
+      await db.Tasks.create(newTask);
+
+      setAlertIsShown(true);
+      setAlert({ msg: "Task Added Successfully", cat: "success" });
+      setTasksNames((prev) => [...prev, newTask.task_name]);
+      setTotalTasks((prev) => prev + 1);
+
+      setTaskName("");
+      setTaskDetail("");
+      setTaskDuration("");
+
+      if (onSubmit) {
+        onSubmit(newTask);
+      }
+      window.location.href = "/tasks";
+    } catch (error) {
+      console.error("Error adding task to the database:", error);
+      setAlertIsShown(true);
+      setAlert({ msg: error.message || "An error occurred", cat: "error" });
+    }
   };
+
+  useEffect(() => {
+    fetchTotalTasks();
+  }, []);
 
   return (
     <div className="relative w-full mt-20">
       <form
         onSubmit={handleSubmit}
-        action=""
         className="flex flex-col items-center justify-center gap-2"
       >
         <input
@@ -67,33 +115,20 @@ function AddTask({ onSubmit }) {
           className="h-[50px] w-[80%] placeholder:text-[#ffffff80] input bg-[#ffffff4d]"
         />
 
-        <select
-          onChange={(e) => setTaskPriority(e.target.value)}
-          value={taskPriority}
-          className="h-[50px] w-[80%] select relative bg-[#ffffff4d] text-xl"
-        >
-          <option disabled value="">
-            Set priority
-          </option>
-          <option className="bg-dark-100" value="high">
-            High
-          </option>
-          <option className="bg-dark-100" value="medium">
-            Medium
-          </option>
-          <option className="bg-dark-100" value="low">
-            Low
-          </option>
-        </select>
-
         <button type="submit" className="btn bg-gold-100 text-gold-200 mt-10">
-          Add task
+          Add Task
         </button>
       </form>
 
       <footer className="fixed bottom-0 w-full h-16 bg-gold-100">
         <AlignerBtn />
       </footer>
+
+      {alertIsShown && (
+        <div className="fixed w-4/5 bottom-[260px] left-1/2 -translate-x-1/2">
+          <Alert msg={alert.msg} cat={alert.cat} />
+        </div>
+      )}
     </div>
   );
 }
