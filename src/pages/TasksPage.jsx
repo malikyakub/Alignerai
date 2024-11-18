@@ -1,18 +1,48 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Divider from "../components/Divider";
-import TasksList from "../components/TasksList";
+
+import db from "../appwrite/database";
 import Matrix from "../components/Matrix";
 import AlignerBtn from "../components/AlignerBtn";
+import TaskDiv from "../components/TaskDiv";
+import TaskLoading from "../components/Loadings/TaskLoading";
 
 function Tasks() {
+  const [taskOrigin, setTaskOrigin] = useState("");
+  const [taskInfo, setTaskInfo] = useState({
+    task_id: "",
+    task_name: "",
+    task_details: "",
+    task_duration: "",
+    task_is_set: "",
+  });
   const [tasks, setTasks] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/data.json")
-      .then((res) => res.json())
-      .then((data) => setTasks(data.tasks))
-      .catch((error) => console.error("Error fetching tasks:", error));
+    async function fetchData() {
+      try {
+        const response = await db.Tasks.list();
+        setTasks(response.documents);
+
+        if (response.documents.length > 0) {
+          const firstTask = response.documents[0];
+          setTaskInfo({
+            task_id: firstTask.task_id,
+            task_name: firstTask.task_name,
+            task_details: firstTask.task_details,
+            task_duration: firstTask.task_duration,
+            task_is_set: firstTask.task_is_set,
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching tasks:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchData();
   }, []);
 
   return (
@@ -20,20 +50,28 @@ function Tasks() {
       <Header />
       <Matrix />
       <Divider />
-      <div className="h-[150px] w-full overflow-y-scroll">
-        {tasks.map((task) => (
-          <TasksList
-            key={task.taskId}
-            taskId={task.taskId}
-            taskName={task.taskName}
-            taskDetail={task.taskDetail}
-            taskDuration={task.taskDuration}
-            taskPriority={task.taskPriority}
-            taskisSet={task.taskisSet}
-          />
-        ))}
+      <div className="h-[150px] w-full overflow-y-scroll overflow-x-hidden">
+        {loading ? (
+          <TaskLoading />
+        ) : (
+          tasks.map((task) => (
+            <TaskDiv
+              key={task.task_id}
+              taskInfo={{
+                task_id: task.task_id,
+                task_name: task.task_name,
+                task_details: task.task_details,
+                task_duration: task.task_duration,
+                task_is_set: task.task_is_set,
+              }}
+              taskOrigin={task.$id}
+            />
+          ))
+        )}
       </div>
-      <a href="/add-task" className="btn bg-gold-100 text-gold-200 mt-5">Add Task</a>
+      <a href="/add-task" className="btn bg-gold-100 text-gold-200 mt-5">
+        Add Task
+      </a>
       <footer className="fixed bottom-0 w-full h-16 bg-gold-100">
         <AlignerBtn />
       </footer>
