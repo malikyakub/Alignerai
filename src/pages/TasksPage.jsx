@@ -9,6 +9,7 @@ import TaskDiv from "../components/TaskDiv";
 import TaskLoading from "../components/Loadings/TaskLoading";
 
 function Tasks() {
+  const [taskOrigin, setTaskOrigin] = useState("");
   const [taskInfo, setTaskInfo] = useState({
     task_id: "",
     task_name: "",
@@ -49,7 +50,7 @@ function Tasks() {
       <Header />
       <Matrix />
       <Divider />
-      <div className="h-[150px] w-full overflow-y-scroll">
+      <div className="h-[150px] w-full overflow-y-scroll overflow-x-hidden">
         {loading ? (
           <TaskLoading />
         ) : (
@@ -63,6 +64,7 @@ function Tasks() {
                 task_duration: task.task_duration,
                 task_is_set: task.task_is_set,
               }}
+              taskOrigin={task.$id}
             />
           ))
         )}

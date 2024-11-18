@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import db from "../appwrite/database";
 import AlignerBtn from "./AlignerBtn";
-import Alert from "./alert";
+import Alert from "./Alert";
 
 function AddTask({ onSubmit }) {
   const [taskName, setTaskName] = useState("");
@@ -119,13 +119,11 @@ function AddTask({ onSubmit }) {
           Add Task
         </button>
       </form>
-
       <footer className="fixed bottom-0 w-full h-16 bg-gold-100">
         <AlignerBtn />
       </footer>
-
       {alertIsShown && (
-        <div className="fixed w-4/5 bottom-[260px] left-1/2 -translate-x-1/2">
+        <div className="fixed w-[90%] bottom-[260px] left-1/2 -translate-x-1/2 animate-alertDisplayer">
           <Alert msg={alert.msg} cat={alert.cat} />
         </div>
       )}
