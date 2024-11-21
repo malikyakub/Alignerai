@@ -10,15 +10,16 @@ import TaskLoading from "../components/Loadings/TaskLoading";
 
 function Tasks() {
   const [taskOrigin, setTaskOrigin] = useState("");
+  const [tasks, setTasks] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [taskInfo, setTaskInfo] = useState({
     task_id: "",
     task_name: "",
     task_details: "",
     task_duration: "",
     task_is_set: "",
+    task_is_set_to: "",
   });
-  const [tasks, setTasks] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
@@ -34,6 +35,7 @@ function Tasks() {
             task_details: firstTask.task_details,
             task_duration: firstTask.task_duration,
             task_is_set: firstTask.task_is_set,
+            task_is_set_to: firstTask.task_is_set_to,
           });
         }
       } catch (error) {
@@ -63,13 +65,14 @@ function Tasks() {
                 task_details: task.task_details,
                 task_duration: task.task_duration,
                 task_is_set: task.task_is_set,
+                task_is_set_to: task.task_is_set_to,
               }}
               taskOrigin={task.$id}
             />
           ))
         )}
       </div>
-      <a href="/add-task" className="btn bg-gold-100 text-gold-200 mt-5">
+      <a href="/add-task" className="btn bg-gold-100 text-gold-200 mt-5 w-40">
         Add Task
       </a>
       <footer className="fixed bottom-0 w-full h-16 bg-gold-100">

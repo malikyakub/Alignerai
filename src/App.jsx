@@ -5,6 +5,7 @@ import TasksPage from "./pages/TasksPage";
 import AddtaskPage from "./pages/AddtaskPage";
 import AlignerPage from "./pages/AlignerPage";
 import TasksListTest from "./pages/TasksListTest";
+import Nopage from "./pages/Nopage";
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
         <Route path="/tasks" element={<TasksPage />} />
         <Route path="/add-task" element={<AddtaskPage />} />
         <Route path="/test" element={<TasksListTest />} />
-        <Route path="/alignerai" element={<AlignerPage />} />
+        <Route path="/aligner" element={<AlignerPage />} />
+        <Route path="*" element={<Nopage />} />
       </Routes>
     </Router>
   );

@@ -2,9 +2,9 @@ import React from "react";
 
 function Header() {
   return (
-    <div className="navbar justify-between p-6 border-b-gold-100 border-b-[1px]">
+    <div className="navbar justify-between px-2 py-4 border-b-gold-100 border-b-[1px]">
       <a href="/">
-        <img src="images/logo/verticallogo.png" alt="logo" width={200} />
+        <img src="SVG/horizantallogo.svg" alt="logo" width={200} />
       </a>
       <a href="#" className="rounded-full shadow-orange-shadow">
         <img

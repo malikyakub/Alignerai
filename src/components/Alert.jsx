@@ -58,7 +58,7 @@ function Alert({ msg, cat }) {
   return (
     <div
       role="alert"
-      className={`${alertClasses[cat]} flex items-center h-[60px] border-none`}
+      className={`${alertClasses[cat]} flex items-center h-[60px] border-none rounded-sm`}
     >
       <div className="text-xl font-bold">{icons[cat]}</div>
       <span className="font-thin">{msg}</span>

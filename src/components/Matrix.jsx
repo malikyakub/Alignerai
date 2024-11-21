@@ -33,33 +33,35 @@ function Matrix() {
   }, []);
 
   const renderTasks = (tasks) => {
-    if (isLoading) {
-      return <RCtasksLoading />;
-    }
-
-    return tasks.map((task) => (
-      <div
-        onClick={() => setTaskNameShown(!taskNameShown)}
-        className="bg-[#ffffff33] py-4 px-2 w-full rounded"
-        key={task.tasks.task_id}
-      >
-        {taskNameShown ? task.tasks.task_name : task.tasks.task_id}
-      </div>
-    ));
+    return isLoading ? (
+      <RCtasksLoading />
+    ) : (
+      tasks.map((task) => {
+        return (
+          <div
+            onClick={() => setTaskNameShown(!taskNameShown)}
+            className="bg-[#ffffff33] py-4 px-2 w-full rounded"
+            key={task.tasks.task_id}
+          >
+            {taskNameShown ? task.tasks.task_name : task.tasks.task_id}
+          </div>
+        );
+      })
+    );
   };
 
   return (
     <div className="mt-4 w-full flex gap-2 flex-wrap justify-center">
-      <div className="w-[47%] flex items-start gap-1 p-2 overflow-scroll flex-wrap justify-center border border-prim-300 rounded h-40 bg-[#006a674d]">
+      <div className="w-[47%] flex items-center gap-2 p-2 overflow-scroll flex-col justify-start border border-prim-300 rounded h-40 bg-[#006a674d]">
         {renderTasks(R1C1TASKS)}
       </div>
-      <div className="w-[47%] flex items-start gap-1 p-2 overflow-scroll flex-wrap justify-center border border-prim-200 rounded h-40 bg-[#fff4b74d]">
+      <div className="w-[47%] flex items-center gap-2 p-2 overflow-scroll flex-col justify-start border border-prim-200 rounded h-40 bg-[#fff4b74d]">
         {renderTasks(R1C2TASKS)}
       </div>
-      <div className="w-[47%] flex items-start gap-1 p-2 overflow-scroll flex-wrap justify-center border border-prim-200 rounded h-40 bg-[#fff4b74d]">
+      <div className="w-[47%] flex items-center gap-2 p-2 overflow-scroll flex-col justify-start border border-prim-200 rounded h-40 bg-[#fff4b74d]">
         {renderTasks(R2C1TASKS)}
       </div>
-      <div className="w-[47%] flex items-start gap-1 p-2 overflow-scroll flex-wrap justify-center border border-prim-100 rounded h-40 bg-[#A0153E4d]">
+      <div className="w-[47%] flex items-center gap-2 p-2 overflow-scroll flex-col justify-start border border-prim-100 rounded h-40 bg-[#A0153E4d]">
         {renderTasks(R2C2TASKS)}
       </div>
     </div>
