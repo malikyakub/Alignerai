@@ -39,5 +39,5 @@ async function Aligner(prompt) {
   }
 }
 
-// export default Aligner;
-Aligner("hello");
+export default Aligner;
+// Aligner("hello");
