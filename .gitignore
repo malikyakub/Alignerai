@@ -25,3 +25,6 @@ dist-ssr
 # deployment files
 _redirects
 vercel.json
+
+
+.env
