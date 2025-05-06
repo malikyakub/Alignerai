@@ -9,3 +9,8 @@ at the moment I face a hard time picking up with task to start my day with (the 
 the idea of this project is to build a web app with i want to transform it to an app later when I get the knowledge.
 
 you insert your task by filling a form and set the timelapse of each task, then you align them as (urgent task, Important Task) by dragging them into a boxes. and after that is when the AI magic comes… it tells you which task to start with and with to do next. and it guides you when needed (optional).
+
+
+## keep in mind
+after you run the project you may not see it as it supposed to.
+to see it as it supposed to... open the Inspect Element or click ` Ctrl + Shift + I ` and set it to a smart phone size ` 412 X 914 `, due to uncompleted in media query section 😉
